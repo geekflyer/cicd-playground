@@ -1,7 +1,7 @@
 name: "Trigger Merge by Label"
 on:
   pull_request_target:
-    types: [label]
+    types: [labeled]
 
 jobs:
   bors-merge:
