@@ -17,14 +17,16 @@ queue_rules:
       - check-success=e2e-test
 
 pull_request_rules:
-  - name: dismiss `automerge` label when external contributor changes the PR
+  - name: dismiss approving reviews when external contributor changes PR after it has been enqueued
     conditions:
       - label=automerge
       - author!=geekflyer
     actions:
-      label:
-        remove:
-          - automerge
+      actions:
+        dismiss_reviews:
+          when: synchronize
+          approved: true
+          changes_requested: false
 
   - name: merge using external contributor queue
     conditions:
@@ -40,7 +42,7 @@ pull_request_rules:
         update_method: rebase
         require_branch_protection: false
 
-  - name: merge using for maintainer queue
+  - name: merge using maintainer queue
     conditions:
       - "#approved-reviews-by>=1"
       - base=main
