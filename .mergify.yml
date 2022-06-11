@@ -2,6 +2,7 @@
 queue_rules:
   # queues are ordered by priority. Maintainer PRs may get merged with higher priority
   - name: maintainer
+    speculative_checks: 10
     conditions:
       - check-success=unit-test
       - check-success=e2e-test
