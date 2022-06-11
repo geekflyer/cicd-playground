@@ -59,7 +59,6 @@ pull_request_rules:
       - base=main
       - label=automerge
       - author=geekflyer
-      - label=fooo
     actions:
       post_check:
         title: |
