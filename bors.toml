@@ -1,7 +1,7 @@
 #CircleCI using GitHub Checks
 status = [
-  "e2e-test", 
-  "scripts-lint",
+  "unit-test", 
+  "e2e-test",
 ]
 
 use_squash_merge = true
