@@ -1,0 +1,22 @@
+name: Dequeue external contributor PR after push
+
+on:
+  pull_request_target:
+    types: [synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  remove_automerge_contrib_label:
+    # is PR event triggered from fork
+    if: github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove automerge_contrib trigger label
+        run: |
+          curl \
+          -X DELETE \
+          -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ github.token }}" \
+          https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/automerge-contrib
