@@ -1,0 +1,33 @@
+# setup the queues
+queue_rules:
+  - name: maintainer
+    conditions:
+      # A PR can be queued without the CI passing, but needs to get merged though
+      - check-success=scripts-lint
+      - check-success=ecosystem-lint
+  - name: external-contributor
+    allow_inplace_checks: false
+    conditions:
+      - check-success=scripts-lint
+      - check-success=ecosystem-lint
+
+pull_request_rules:
+  - name: merge using merge queue as maintainer
+    conditions:
+      - base=main
+      - label=automerge
+    actions:
+      queue:
+        name: maintainer
+        method: squash
+        require_branch_protection: false
+  - name: merge using merge queue for external contributors
+    conditions:
+      - base=main
+      - label=automerge-contrib
+      - check-success=scripts-lint
+    actions:
+      queue:
+        name: external-contributor
+        method: squash
+        require_branch_protection: false
