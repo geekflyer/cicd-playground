@@ -51,4 +51,5 @@ pull_request_rules:
       queue:
         name: maintainer
         method: squash
+        update_method: rebase
         require_branch_protection: false
