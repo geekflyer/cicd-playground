@@ -1,0 +1,8 @@
+#CircleCI using GitHub Checks
+status = [
+  "e2e-test", "scripts-lint" 
+]
+
+use_squash_merge = true
+
+delete_merged_branches = true
