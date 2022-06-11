@@ -7,6 +7,7 @@ status = [
 use_squash_merge = true
 
 delete_merged_branches = true
+update_base_for_deletes = true
 
 required_approvals = 0
 
