@@ -18,11 +18,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: sleep 45
+      - run: sleep 10
 
   e2e-test:
     runs-on: ubuntu-latest
     if: github.event.pull_request.head.repo.full_name == github.event.pull_request.base.repo.full_name
     steps:
       - uses: actions/checkout@v3
-      - run: sleep 90
+      - run: sleep 10
