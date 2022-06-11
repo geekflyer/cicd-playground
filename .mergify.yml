@@ -20,7 +20,7 @@ pull_request_rules:
   - name: dismiss automerge label when external contributor changes the PR after the automerge label has been applied
     conditions:
       - label=automerge
-      - author!=@geekflyer
+      - author!=geekflyer
     actions:
       label:
         remove:
@@ -31,7 +31,7 @@ pull_request_rules:
       - "#approved-reviews-by>=1"
       - base=main
       - label=automerge
-      - author!=@geekflyer
+      - author!=geekflyer
       - check-success=unit-test
     actions:
       queue:
