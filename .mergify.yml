@@ -43,7 +43,7 @@ pull_request_rules:
 
   - name: merge using maintainer queue
     conditions:
-#       - "#approved-reviews-by>=1"
+      #       - "#approved-reviews-by>=1"
       - base=main
       - label=automerge
       - author=geekflyer
@@ -53,3 +53,21 @@ pull_request_rules:
         method: squash
         update_method: rebase
         require_branch_protection: false
+
+  - name: Conventional Commit
+    conditions:
+      - base=main
+      - label=automerge
+      - author=geekflyer
+    actions:
+      post_check:
+        title: |
+          {% if check_succeed %}
+          Ready to automerge
+          {% else %}
+          Not ready to automerge
+          {% endif %}
+        summary: |
+          {% if not check_succeed %}
+          Foo bar
+          {% endif %}
