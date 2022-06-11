@@ -3,13 +3,13 @@ queue_rules:
   - name: maintainer
     conditions:
       # A PR can be queued without the CI passing, but needs to get merged though
-      - check-success=scripts-lint
-      - check-success=ecosystem-lint
+      - check-success=unit-test
+      - check-success=e2e-test
   - name: external-contributor
     allow_inplace_checks: false
     conditions:
-      - check-success=scripts-lint
-      - check-success=ecosystem-lint
+      - check-success=unit-test
+      - check-success=e2e-test
 
 pull_request_rules:
   - name: merge using merge queue as maintainer
@@ -25,7 +25,7 @@ pull_request_rules:
     conditions:
       - base=main
       - label=automerge-contrib
-      - check-success=scripts-lint
+      - check-success=unit-test
     actions:
       queue:
         name: external-contributor
