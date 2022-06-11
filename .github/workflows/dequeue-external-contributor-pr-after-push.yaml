@@ -5,7 +5,8 @@ on:
     types: [synchronize, reopened]
 
 permissions:
-  issues: write
+  contents: read
+  pull-requests: write
 
 jobs:
   remove_automerge_contrib_label:
