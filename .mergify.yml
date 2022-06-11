@@ -22,11 +22,10 @@ pull_request_rules:
       - label=automerge
       - author!=geekflyer
     actions:
-      actions:
-        dismiss_reviews:
-          when: synchronize
-          approved: true
-          changes_requested: false
+      dismiss_reviews:
+        when: synchronize
+        approved: true
+        changes_requested: false
 
   - name: merge using external contributor queue
     conditions:
