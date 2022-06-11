@@ -9,7 +9,7 @@ on:
       - auto
       - canary
       - staging
-      - stuff5
+      - trying
       - testing
       - pr-mirror/**
 
