@@ -17,7 +17,7 @@ queue_rules:
       - check-success=e2e-test
 
 pull_request_rules:
-  - name: dismiss automerge label when external contributor changes the PR after the automerge label has been applied
+  - name: dismiss `automerge` label when external contributor changes the PR
     conditions:
       - label=automerge
       - author!=geekflyer
