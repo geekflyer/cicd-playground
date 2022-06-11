@@ -54,11 +54,11 @@ pull_request_rules:
         update_method: rebase
         require_branch_protection: false
 
-  - name: Ready to automerge
-    conditions:
-      - base=main
-      - label=automerge
-      - author=geekflyer
+  # - name: Ready to automerge
+  #   conditions:
+  #     - base=main
+  #     - label=automerge
+  #     - author=geekflyer
     # actions:
     #   post_check:
     #     title: |
