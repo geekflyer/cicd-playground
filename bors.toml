@@ -4,7 +4,7 @@ status = [
   "e2e-test",
 ]
 
-# use_squash_merge = true
+use_squash_merge = true
 
 # delete_merged_branches = true
 # update_base_for_deletes = true
