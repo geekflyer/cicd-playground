@@ -5,6 +5,10 @@ on:
   push:
     branches:
       - main
+  pull_request_target:
+    branches:
+      - main
+
 # If pull requests are always based on the same branches, only triggering the workflow when these branches receive new commits will minimize the workflow execution.
 # on:
 #   push:
