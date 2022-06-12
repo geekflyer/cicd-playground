@@ -59,20 +59,20 @@ pull_request_rules:
 
 
 
-  # - name: Ready to automerge
-  #   conditions:
-  #     - base=main
-  #     - label=automerge
-  #     - author=geekflyer
-    # actions:
-    #   post_check:
-    #     title: |
-    #       {% if check_succeed %}
-    #       Ready to automerge
-    #       {% else %}
-    #       Not ready to automerge
-    #       {% endif %}
-    #     summary: |
-    #       {% if not check_succeed %}
-    #       Foo bar
-    #       {% endif %}
+  - name: Ready to automerge
+    conditions:
+      - base=main
+      - check-success=unit-test
+      - check-success=e2e-test
+    actions:
+      post_check:
+        title: |
+          {% if check_succeed %}
+          Ready to automerge
+          {% else %}
+          Not ready to automerge
+          {% endif %}
+        summary: |
+          {% if not check_succeed %}
+          Foo bar
+          {% endif %}
