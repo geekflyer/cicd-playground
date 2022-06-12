@@ -3,8 +3,6 @@ queue_rules:
   # queues are ordered by priority. Maintainer PRs may get merged with higher priority
   - name: maintainer
     speculative_checks: 1
-    method: fast-forward
-    rebase_fallback: squash
     allow_inplace_checks: true
     conditions:
       - check-success=unit-test
@@ -54,9 +52,11 @@ pull_request_rules:
     actions:
       queue:
         name: maintainer
-        method: squash
+        method: fast-forward
         update_method: rebase
+        rebase_fallback: squash
         require_branch_protection: false
+        allow_inplace_checks: true
 
   - name: Ready to automerge
     conditions:
