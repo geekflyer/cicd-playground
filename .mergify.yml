@@ -4,6 +4,7 @@ queue_rules:
   - name: maintainer
     speculative_checks: 20
     allow_inplace_checks: true
+    method: fast-forward
     conditions:
       - check-success=unit-test
       - check-success=e2e-test
@@ -14,6 +15,7 @@ queue_rules:
     # this will make secrets available in Pull Requests that originated from forks.
     # Therefore we need to disable automerge immediately when the PR has changed (unlike for maintainer PRs, for which we leave the automerge turned even after another push).
     allow_inplace_checks: false
+    method: squash
     conditions:
       - check-success=unit-test
       - check-success=e2e-test
