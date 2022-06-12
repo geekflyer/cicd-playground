@@ -1,0 +1,42 @@
+name: Auto-update
+# Auto-update only listens to `push` events.
+# If a pull request is already outdated when enabling auto-merge, manually click on the "Update branch" button a first time to avoid having to wait for another commit to land on the base branch for the pull request to be updated.
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - auto_merge_enabled
+    branches:
+      - main
+
+# If pull requests are always based on the same branches, only triggering the workflow when these branches receive new commits will minimize the workflow execution.
+# on:
+#   push:
+#     branches:
+#       - main
+
+permissions:
+  # actions: read|write|none
+  # checks: read|write|none
+  contents: write
+  # deployments: read|write|none
+  # id-token: read|write|none
+  # issues: read|write|none
+  # discussions: read|write|none
+  # packages: read|write|none
+  # pages: read|write|none
+  pull-requests: write
+  # repository-projects: read|write|none
+  # security-events: read|write|none
+  # statuses: read|write|none
+
+jobs:
+  Auto:
+    name: Auto-update
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://chinthakagodawita/autoupdate-action:v1
+        env:
+          GITHUB_TOKEN: "${{ secrets.PAT }}"
