@@ -4,12 +4,12 @@ name: Auto-update
 on:
   push:
     branches:
-      - main
-  pull_request:
-    types:
-      - auto_merge_enabled
-    branches:
-      - main
+      - foooboar
+  # pull_request:
+  #   types:
+  #     - auto_merge_enabled
+  #   branches:
+  #     - main
 
 # If pull requests are always based on the same branches, only triggering the workflow when these branches receive new commits will minimize the workflow execution.
 # on:
