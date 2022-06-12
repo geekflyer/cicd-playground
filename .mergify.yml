@@ -56,7 +56,6 @@ pull_request_rules:
         update_method: rebase
         rebase_fallback: squash
         require_branch_protection: false
-        allow_inplace_checks: true
 
   - name: Ready to automerge
     conditions:
