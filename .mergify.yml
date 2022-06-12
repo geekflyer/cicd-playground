@@ -52,7 +52,7 @@ pull_request_rules:
     actions:
       queue:
         name: maintainer
-        method: fast-forward
+        method: squash
         update_method: rebase
         rebase_fallback: squash
         require_branch_protection: false
