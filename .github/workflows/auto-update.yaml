@@ -33,4 +33,4 @@ jobs:
     steps:
       - uses: tibdex/auto-update@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.PAT }}
