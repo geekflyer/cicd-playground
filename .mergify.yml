@@ -56,9 +56,6 @@ pull_request_rules:
         update_method: rebase
         require_branch_protection: false
 
-
-
-
   - name: Ready to automerge
     conditions:
       - base=main
