@@ -2,7 +2,9 @@
 queue_rules:
   # queues are ordered by priority. Maintainer PRs may get merged with higher priority
   - name: maintainer
-    speculative_checks: 20
+    speculative_checks: 1
+    method: fast-forward
+    rebase_fallback: squash
     allow_inplace_checks: true
     conditions:
       - check-success=unit-test
