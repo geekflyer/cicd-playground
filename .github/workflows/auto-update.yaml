@@ -37,6 +37,6 @@ jobs:
     name: Auto-update
     runs-on: ubuntu-latest
     steps:
-      - uses: tibdex/auto-update@v2
+      - uses: geekflyer/auto-update@v2
         with:
           github_token: ${{ secrets.PAT }}
