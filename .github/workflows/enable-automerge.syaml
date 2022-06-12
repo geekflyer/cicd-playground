@@ -1,0 +1,21 @@
+name: Enable automerge
+
+on:
+  pull_request_target:
+    types: [auto_merge_enabled]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  enable_automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add automerge trigger label
+        run: |
+          curl \
+          -X POST \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "Authorization: token ${{ github.token }}" \
+          https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels":["automerge"]}'
