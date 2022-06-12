@@ -13,3 +13,4 @@ jobs:
         with:
           issue-number: ${{ github.event.number }}
           body: bors merge
+          token: ${{ secrets.PAT }}
