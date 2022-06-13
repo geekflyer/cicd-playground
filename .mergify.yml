@@ -3,60 +3,59 @@ queue_rules:
   # queues are ordered by priority. Maintainer PRs may get merged with higher priority
   - name: maintainer
     speculative_checks: 10
-    conditions: []
-    # allow_inplace_checks: True
-    # conditions:
-    #   - check-success=unit-test
-    #   - check-success=e2e-test
+    allow_inplace_checks: true
+    conditions:
+      - check-success=unit-test
+      - check-success=e2e-test
 
-  # - name: external-contributor
-  #   # For external contributor PRs we disable allows_inplace_checks
-  #   # This will mergify create a Draft PR copy of the original PR in a branch and run the checks there instead
-  #   # this will make secrets available in Pull Requests that originated from forks.
-  #   # Therefore we need to disable automerge immediately when the PR has changed (unlike for maintainer PRs, for which we leave the automerge turned even after another push).
-  #   allow_inplace_checks: False
-  #   conditions:
-  #     - check-success=unit-test
-  #     - check-success=e2e-test
+  - name: external-contributor
+    # For external contributor PRs we disable allows_inplace_checks
+    # This will mergify create a Draft PR copy of the original PR in a branch and run the checks there instead
+    # this will make secrets available in Pull Requests that originated from forks.
+    # Therefore we need to disable automerge immediately when the PR has changed (unlike for maintainer PRs, for which we leave the automerge turned even after another push).
+    allow_inplace_checks: false
+    conditions:
+      - check-success=unit-test
+      - check-success=e2e-test
 
 pull_request_rules:
-  # - name: dismiss approving reviews when external contributor changes PR after it has been enqueued
-  #   conditions:
-  #     - label=automerge
-  #     - author!=geekflyer
-  #   actions:
-  #     dismiss_reviews:
-  #       when: synchronize
-  #       approved: true
-  #       changes_requested: false
+  - name: dismiss approving reviews when external contributor changes PR after it has been enqueued
+    conditions:
+      - label=automerge
+      - author!=geekflyer
+    actions:
+      dismiss_reviews:
+        when: synchronize
+        approved: true
+        changes_requested: false
 
-  # - name: merge using external contributor queue
-  #   conditions:
-  #     - "#approved-reviews-by>=1"
-  #     - base=main
-  #     - label=automerge
-  #     - author!=geekflyer
-  #     - check-success=unit-test
-  #   actions:
-  #     queue:
-  #       name: external-contributor
-  #       method: squash
-  #       update_method: rebase
-  #       require_branch_protection: false
+  - name: merge using external contributor queue
+    conditions:
+      - "#approved-reviews-by>=1"
+      - base=main
+      - label=automerge
+      - author!=geekflyer
+      - check-success=unit-test
+    actions:
+      queue:
+        name: external-contributor
+        method: squash
+        update_method: rebase
+        require_branch_protection: false
 
   - name: merge using maintainer queue
     conditions:
       #       - "#approved-reviews-by>=1"
       - base=main
       - label=automerge
-      # - author=geekflyer
+      - author=geekflyer
     actions:
       queue:
         name: maintainer
-        # method: squash
-        # update_method: rebase
-        # rebase_fallback: squash
-        # require_branch_protection: false
+        method: squash
+        update_method: rebase
+        rebase_fallback: squash
+        require_branch_protection: false
 
   # # - name: Ready to automerge
   # #   conditions:
